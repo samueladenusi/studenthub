@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Student | StudentHub{% endblock %}
+
+{% block heading %}Register Student{% endblock %}
+
+{% block content %}
+
+
+<section class="form-section">
+
+    <div class="form-heading">
+        <h1>Register New Student</h1>
+        <p>Enter the student's information below.</p>
+    </div>
+
+    <form method="POST" class="student-form">
+
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="error-message">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+
+        <div class="form-grid">
+
+            {% for field in form %}
+
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.errors %}
+                        <div class="field-error">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="form-actions">
+
+            <a href="{% url 'dashboard' %}" class="cancel-button">
+                Cancel
+            </a>
+
+            <button type="submit" class="submit-button">
+                Register Student
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+{% endblock %}

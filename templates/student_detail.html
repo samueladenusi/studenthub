@@ -1,0 +1,66 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Student Details | StudentHub{% endblock %}
+
+{% block heading %}Student Details{% endblock %}
+
+{% block content %}
+
+<section class="records-section">
+
+    <div class="records-heading">
+        <div>
+            <h1>Student Profile</h1>
+            <p>View complete student information.</p>
+        </div>
+
+        <a href="{% url 'student_list' %}" class="add-button">
+            Back to Records
+        </a>
+    </div>
+
+    <div class="student-profile">
+
+        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+
+        <div class="profile-details">
+
+            <p><strong>First Name:</strong> {{ student.first_name }}</p>
+
+            <p><strong>Last Name:</strong> {{ student.last_name }}</p>
+
+            <p><strong>Matric Number:</strong> {{ student.matric_number }}</p>
+
+            <p><strong>Email Address:</strong> {{ student.email }}</p>
+
+            <p><strong>Department:</strong> {{ student.department }}</p>
+
+            <p><strong>Level:</strong> {{ student.level }}</p>
+
+            <p><strong>Gender:</strong> {{ student.gender }}</p>
+
+            <p>
+                <strong>Date Registered:</strong>
+                {{ student.date_registered|date:"F d, Y" }}
+            </p>
+
+        </div>
+
+        <div class="profile-actions">
+
+            <a href="{% url 'edit_student' student.id %}" class="add-button">
+                Edit Student
+            </a>
+
+            <a href="{% url 'student_list' %}">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

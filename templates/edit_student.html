@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Edit Student | StudentHub{% endblock %}
+
+{% block heading %}Edit Student{% endblock %}
+
+{% block content %}
+
+<section class="form-section">
+
+    <div class="form-heading">
+        <h1>Edit Student Information</h1>
+        <p>Update the details of {{ student.first_name }} {{ student.last_name }}.</p>
+    </div>
+
+    <form method="POST" class="student-form">
+
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="error-message">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+
+        <div class="form-grid">
+
+            {% for field in form %}
+
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.errors %}
+                        <div class="field-error">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="form-actions">
+
+            <a href="{% url 'student_detail' student.id %}" class="cancel-button">
+                Cancel
+            </a>
+
+            <button type="submit" class="submit-button">
+                Save Changes
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+{% endblock %}
